@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>رَصيد | مديرك المالي الشخصي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">ر</span><span><b>رَصيد</b><small>إدارة فلوسك بذكاء</small></span></a>
+      <div class="side-label">القائمة الرئيسية</div>
+      <nav class="nav">
+        <a class="nav-link active" href="#overview" data-page="overview"><span>◫</span> نظرة عامة</a>
+        <a class="nav-link" href="#daily" data-page="daily"><span>▦</span> سجل الأيام</a>
+        <a class="nav-link" href="#budget" data-page="budget"><span>◷</span> ميزانية الشهر</a>
+        <a class="nav-link" href="#future" data-page="future"><span>✧</span> المستقبل والأولويات</a>
+        <a class="nav-link" href="#savings" data-page="savings"><span>♧</span> الحصالات والأهداف</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="tip-card"><span class="tip-icon">✦</span><b>نصيحة رَصيد</b><p>كل جنيه بتعرف راح فين، بتقرب خطوة من هدفك.</p></div>
+        <div class="profile"><div class="avatar">م</div><div><b>حسابي الشخصي</b><small>بياناتك على جهازك</small></div><span class="online-dot"></span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-title"><button class="menu-btn" id="menuBtn">☰</button><div><span class="eyebrow">مساحة التحكم المالي</span><h1>أهلاً بيك في رَصيد <span class="wave">✦</span></h1></div></div>
+        <div class="top-actions"><span class="today-chip" id="todayLabel"></span><button class="icon-btn" id="exportBtn" title="تصدير البيانات">⇩</button><button class="primary-btn" id="quickAdd">＋ حركة جديدة</button></div>
+      </header>
+
+      <div class="page-view active" data-page-view="overview">
+      <section class="welcome-strip" id="overview">
+        <div><span class="eyebrow light">ملخصك المالي</span><h2>خليك ماسك فلوسك… مش هي اللي تمسكك.</h2><p>تابع دخلك وصرفك وحقق أهدافك خطوة بخطوة.</p></div>
+        <div class="month-picker"><label for="monthPicker">الشهر الحالي</label><input type="month" id="monthPicker"></div>
+        <div class="strip-orb">رَصيد</div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card balance-card"><div class="stat-top"><span>الرصيد المتاح</span><span class="stat-icon">◈</span></div><strong id="balanceValue">0 ج.م</strong><small><i class="positive-dot"></i> الدخل ناقص المصروفات</small><div class="sparkline">⌁⌁⌁⌁⌁</div></article>
+        <article class="stat-card"><div class="stat-top"><span>إجمالي الدخل</span><span class="stat-icon green">↙</span></div><strong id="incomeValue">0 ج.م</strong><small>كل المبالغ اللي دخلت</small><div class="mini-line green-line"></div></article>
+        <article class="stat-card"><div class="stat-top"><span>إجمالي المصروفات</span><span class="stat-icon red">↗</span></div><strong id="expenseValue">0 ج.م</strong><small>كل اللي اتصرف خلال الشهر</small><div class="mini-line red-line"></div></article>
+        <article class="stat-card"><div class="stat-top"><span>نسبة الادخار</span><span class="stat-icon purple">✧</span></div><strong id="savingRate">0%</strong><small>من دخلك الشهري</small><div class="rate-track"><span id="rateBar"></span></div></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel chart-panel">
+          <div class="panel-heading"><div><span class="eyebrow">حركة الفلوس</span><h3>الدخل مقابل المصروف</h3></div><span class="soft-pill" id="chartMonth"></span></div>
+          <div class="chart-legend"><span><i class="legend-dot income-dot"></i> الدخل</span><span><i class="legend-dot expense-dot"></i> المصروف</span></div>
+          <div class="chart-wrap"><canvas id="moneyChart" height="220"></canvas></div>
+        </article>
+        <article class="panel rating-panel">
+          <div class="panel-heading"><div><span class="eyebrow">تقييم الشهر</span><h3>أنت ماشي إزاي؟</h3></div><span class="rating-star">✦</span></div>
+          <div class="rating-score" id="ratingScore">—</div><h4 id="ratingTitle">ابدأ تسجيل حركاتك</h4><p id="ratingText">كل ما تسجل دخلك ومصروفاتك، هنعرف نقيم إدارتك للفلوس.</p>
+          <div class="rating-footer"><span>انضباطك المالي</span><b id="ratingPercent">0%</b></div><div class="progress-track"><span id="ratingBar"></span></div>
+        </article>
+      </section>
+
+      </div>
+
+      <div class="page-view" data-page-view="daily">
+      <div class="page-intro"><span class="eyebrow">متابعة يوم بيوم</span><h2>سجل الأيام</h2><p>كل حركة مالية بتسجلها هتظهر هنا بالتاريخ والتفاصيل.</p></div>
+      <section class="panel" id="daily">
+        <div class="panel-heading wrap-heading"><div><span class="eyebrow">متابعة يوم بيوم</span><h3>سجل الشهر اليومي</h3><p class="muted">اكتب دخل اليوم ومصروفه، والباقي بيتحسب لوحده.</p></div><button class="outline-btn" id="addDayBtn">＋ إضافة حركة</button></div>
+        <div class="table-wrap"><table><thead><tr><th>اليوم</th><th>التاريخ</th><th>الدخل</th><th>المصروف</th><th>صافي اليوم</th><th>ملاحظة</th></tr></thead><tbody id="dailyRows"></tbody></table></div>
+        <div class="table-foot"><span id="daysCount">0 يوم مسجل</span><b id="monthNet">صافي الشهر: 0 ج.م</b></div>
+      </section>
+
+      </div>
+
+      <div class="page-view" data-page-view="budget">
+      <div class="page-intro"><span class="eyebrow">خطتك قبل ما تصرف</span><h2>ميزانية الشهر</h2><p>وزّع ميزانيتك على البنود وتابع اللي اتصرف والمتبقي.</p></div>
+      <section class="panel" id="budget">
+        <div class="panel-heading wrap-heading"><div><span class="eyebrow">خطتك قبل ما تصرف</span><h3>ميزانية الشهر</h3><p class="muted">حدد سقف لكل نوع مصروف وتابع المتبقي.</p></div><button class="outline-btn" id="addBudgetBtn">＋ بند جديد</button></div>
+        <div class="budget-summary"><div><small>إجمالي الميزانية</small><b id="budgetTotal">0 ج.م</b></div><div><small>اللي اتصرف</small><b id="budgetSpent">0 ج.م</b></div><div><small>المتبقي</small><b id="budgetRemaining">0 ج.م</b></div></div>
+        <div class="budget-list" id="budgetList"></div>
+      </section>
+
+      </div>
+
+      <div class="page-view" data-page-view="future">
+      <div class="page-intro"><span class="eyebrow">رتّب أولوياتك</span><h2>المستقبل والأولويات</h2><p>نظّم مهامك حسب الأهمية والاستعجال وخطط للي جاي.</p></div>
+      <section class="panel" id="future">
+        <div class="panel-heading"><div><span class="eyebrow">رتّب أولوياتك</span><h3>المستقبل – مصفوفة الأولويات</h3><p class="muted">قسم مهامك حسب الأهمية والاستعجال.</p></div></div>
+        <div class="matrix-grid">
+          <div class="matrix-card urgent-important"><div class="matrix-head"><span>01</span><div><b>هام وعاجل</b><small>نفّذ دلوقتي</small></div><button data-add-task="urgent-important">＋</button></div><ul id="tasks-urgent-important"></ul></div>
+          <div class="matrix-card not-urgent-not-important"><div class="matrix-head"><span>02</span><div><b>غير هام وغير عاجل</b><small>قلّل أو أجّل</small></div><button data-add-task="not-urgent-not-important">＋</button></div><ul id="tasks-not-urgent-not-important"></ul></div>
+          <div class="matrix-card important-not-urgent"><div class="matrix-head"><span>03</span><div><b>هام وغير عاجل</b><small>خطط له</small></div><button data-add-task="important-not-urgent">＋</button></div><ul id="tasks-important-not-urgent"></ul></div>
+          <div class="matrix-card urgent-not-important"><div class="matrix-head"><span>04</span><div><b>عاجل وغير هام</b><small>تعامل معاه بسرعة</small></div><button data-add-task="urgent-not-important">＋</button></div><ul id="tasks-urgent-not-important"></ul></div>
+        </div>
+      </section>
+
+      </div>
+
+      <div class="page-view" data-page-view="savings">
+      <div class="page-intro"><span class="eyebrow">فلوسك ليها هدف</span><h2>الحصالات والأهداف</h2><p>تابع تحويشك للخطوبة والمواسم والطوارئ وأي هدف جديد.</p></div>
+      <section class="panel" id="savings">
+        <div class="panel-heading wrap-heading"><div><span class="eyebrow">فلوسك ليها هدف</span><h3>الحصالات والأهداف</h3><p class="muted">خصص مبلغ للخطوبة والمواسم والطوارئ وأي حلم تاني.</p></div><button class="primary-btn" id="addJarBtn">＋ حصالة جديدة</button></div>
+        <div class="jars-grid" id="jarsGrid"></div>
+      </section>
+      </div>
+      <footer>صُنع بحب ❤️ عشان كل جنيه يبقى ليه خطة — <b>رَصيد</b></footer>
+    </main>
+  </div>
+
+  <dialog id="transactionDialog" class="modal"><form method="dialog" id="transactionForm"><div class="modal-head"><div><span class="eyebrow">تسجيل حركة مالية</span><h3>حركة جديدة</h3></div><button class="close-btn" value="cancel">×</button></div>
+    <div class="field"><label>نوع الحركة</label><div class="segmented"><label><input type="radio" name="type" value="income" checked><span>＋ دخل</span></label><label><input type="radio" name="type" value="expense"><span>－ مصروف</span></label></div></div>
+    <div class="field"><label for="txAmount">المبلغ بالجنيه</label><input id="txAmount" type="number" min="1" required placeholder="مثلاً 250"></div>
+    <div class="field"><label for="txDate">التاريخ</label><input id="txDate" type="date" required></div>
+    <div class="field"><label for="txCategory">البند / التصنيف</label><select id="txCategory"><option>دخل إضافي</option><option>أكل وشرب</option><option>مواصلات</option><option>خروجات</option><option>ملابس</option><option>إنترنت وموبايل</option><option>مصاريف شخصية</option><option>طوارئ</option><option>أخرى</option></select></div>
+    <div class="field"><label for="txNote">ملاحظة (اختياري)</label><input id="txNote" placeholder="اكتب تفاصيل بسيطة"></div><button class="primary-btn full-btn" type="submit">حفظ الحركة</button>
+  </form></dialog>
+
+  <dialog id="simpleDialog" class="modal"><form method="dialog" id="simpleForm"><div class="modal-head"><div><span class="eyebrow" id="simpleEyebrow">إضافة</span><h3 id="simpleTitle">إضافة عنصر</h3></div><button class="close-btn" value="cancel">×</button></div><div id="simpleFields"></div><button class="primary-btn full-btn" type="submit">حفظ</button></form></dialog>
+  <script src="app.js"></script>
+</body></html>
